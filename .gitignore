@@ -1,1 +1,27 @@
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Dependencies ---
+node_modules/
+vendor/
+.venv/
+
+# --- Build outputs ---
+dist/
+build/
+*.exe
+*.class
+
+# --- IDE/Editor settings ---
+.vscode/
+.idea/
+*.suo
+
+# --- Secrets/Env ---
 .env
+.env.local
+
+# --- Logs ---
+*.log
+*.log.*

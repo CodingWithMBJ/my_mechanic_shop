@@ -4,6 +4,7 @@ from app.models import Customer, db
 from marshmallow import ValidationError
 from sqlalchemy import select
 from . import customers_bp
+# from app.extensions import limiter
 
 
 #=========> CRUD Endpoints <==========#
@@ -11,6 +12,7 @@ from . import customers_bp
 # CREATE CUSTOMER
 
 @customers_bp.route("/", methods=['POST'])
+# @limiter.limit("3 per hour") #A client can only attempt to make 3 customers per hour
 def create_customer():
     try: 
         customer_data = customer_schema.load(request.json)
