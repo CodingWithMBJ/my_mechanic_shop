@@ -1,5 +1,5 @@
 from flask import Flask
-from .extensions import ma, limiter
+from .extensions import ma
 from .models import db
 from .blueprints.customer import customers_bp
 from .blueprints.mechanic import mechanics_bp

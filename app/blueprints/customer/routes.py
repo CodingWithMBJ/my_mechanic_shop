@@ -32,7 +32,7 @@ def create_customer():
 # GET ALL CUSTOMERS
 
 @customers_bp.route("/", methods=['GET'])
-def get_members():
+def get_customers():
     query = select(Customer)
     customers = db.session.execute(query).scalars().all()
     
