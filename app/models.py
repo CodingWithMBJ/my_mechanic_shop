@@ -41,7 +41,7 @@ class ServiceTicket(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     vin: Mapped[str] = mapped_column(String(17), nullable=False, unique=True)
     service_date: Mapped[date] = mapped_column(Date, default=date.today)
-    service_desc: Mapped[str] = mapped_column(String(200), nullable=False)
+    service_description: Mapped[str] = mapped_column(String(200), nullable=False)
     customer_id: Mapped[int] = mapped_column(ForeignKey('customers.id'), nullable=False)
 
     customer: Mapped['Customer'] = relationship(back_populates='service_tickets')
