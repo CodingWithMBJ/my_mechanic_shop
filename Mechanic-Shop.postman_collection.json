@@ -307,7 +307,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/service_tickets",
+              "raw": "http://127.0.0.1:5000/service-tickets",
               "protocol": "http",
               "host": [
                 "127",
@@ -317,7 +317,7 @@
               ],
               "port": "5000",
               "path": [
-                "service_tickets"
+                "service-tickets"
               ]
             }
           },
@@ -329,7 +329,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/service_tickets",
+              "raw": "http://127.0.0.1:5000/service-tickets",
               "protocol": "http",
               "host": [
                 "127",
@@ -339,7 +339,7 @@
               ],
               "port": "5000",
               "path": [
-                "service_tickets"
+                "service-tickets"
               ]
             }
           },
@@ -351,7 +351,7 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/service_tickets/1/assign-mechanic/1",
+              "raw": "http://127.0.0.1:5000/service-tickets/1/assign-mechanic/1",
               "protocol": "http",
               "host": [
                 "127",
@@ -361,7 +361,7 @@
               ],
               "port": "5000",
               "path": [
-                "service_tickets",
+                "service-tickets",
                 "1",
                 "assign-mechanic",
                 "1"
@@ -376,7 +376,7 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/service_tickets/1/remove-mechanic/1",
+              "raw": "http://127.0.0.1:5000/service-tickets/1/remove-mechanic/1",
               "protocol": "http",
               "host": [
                 "127",
@@ -386,7 +386,7 @@
               ],
               "port": "5000",
               "path": [
-                "service_tickets",
+                "service-tickets",
                 "1",
                 "remove-mechanic",
                 "1"
