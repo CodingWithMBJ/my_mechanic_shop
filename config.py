@@ -15,6 +15,8 @@ db_name = os.getenv("DB_NAME")
 class DevelopmentConfig:
     SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{db_user}:{db_pass}@{db_host}/{db_name}"
     DEBUG = True
+    CACHE_TYPE = 'SimpleCache'
+    CACHE_DEFAULT_TIMEOUT = 300
     
 class TestingConfig:
     pass
