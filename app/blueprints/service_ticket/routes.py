@@ -1,3 +1,5 @@
+from app.utils.util import token_required
+
 from .schemas import service_ticket_schema, service_tickets_schema
 from flask import jsonify, request
 from app.models import ServiceTicket, Mechanic, db
@@ -24,7 +26,8 @@ def create_service_ticket():
 
 # GET ALL SERVICE TICKETS
 @service_ticket_bp.route("/", methods=["GET"])
-def get_service_tickets():
+@token_required
+def get_service_tickets(user_id):
     query = select(ServiceTicket)
     service_tickets = db.session.execute(query).scalars().all()
 

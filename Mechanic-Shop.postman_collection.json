@@ -20,7 +20,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Mohamed Jalloh\",\n  \"email\": \"mohamed@example.com\",\n  \"phone_number\": \"6515550001\"\n}",
+              "raw": "{\n  \"name\": \"Mohamed\",\n  \"email\": \"mohamed2@example.com\",\n  \"phone_number\": \"6515550002\",\n  \"password\": \"pass7wo\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -135,7 +135,14 @@
           "name": "Delete Customer",
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc0ODE4MjksImlhdCI6MTc3NzQ3ODIyOSwic3ViIjoiMSJ9.9N_QuWgnQvskLqQ5QporEB-dUl1TfThGCgN5B0_H2TE",
+                  "type": "string"
+                }
+              ]
             },
             "method": "DELETE",
             "header": [],
@@ -144,7 +151,7 @@
               "raw": "{\n    \"DOB\": \"1991-11-19\",\n    \"email\": \"mohamed.jalloh91@gmail.com\",\n    \"id\": 1,\n    \"name\": \"Mohamed\",\n    \"password\": \"Password1234\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/customer/3",
+              "raw": "http://127.0.0.1:5000/customers",
               "protocol": "http",
               "host": [
                 "127",
@@ -154,8 +161,42 @@
               ],
               "port": "5000",
               "path": [
-                "customer",
-                "3"
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"mohamed@example.com\",\n  \"password\": \"pass0ne\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/customers/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "customers",
+                "login"
               ]
             }
           },
@@ -299,7 +340,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Ali Hassan\",\n  \"email\": \"ali@example.com\",\n  \"phone\": \"6515551111\",\n  \"salary\": 70000\n}",
+              "raw": "{\n  \"vin\": \"1HGCM82633A654321\",\n  \"service_desc\": \"Brake inspection and pad replacement\",\n  \"customer_id\": 2\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -326,6 +367,16 @@
         {
           "name": "Get All Service Tickets",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc0ODI0NDYsImlhdCI6MTc3NzQ3ODg0Niwic3ViIjoiMiJ9.VAGLHPFpUP0kCw5F_nAx30UHuvlsBaa1UuFBjNQDQZY",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "url": {
