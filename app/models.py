@@ -65,3 +65,4 @@ class Mechanic(Base):
         secondary=service_mechanics,
         back_populates='mechanics'
     )
+

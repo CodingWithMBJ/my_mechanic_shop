@@ -1,6 +1,6 @@
 from app.utils.util import token_required
 
-from .schemas import service_ticket_schema, service_tickets_schema
+from .schemas import service_ticket_schema, service_tickets_schema, edit_ticket_schema
 from flask import jsonify, request
 from app.models import ServiceTicket, Mechanic, db
 from marshmallow import ValidationError
@@ -82,3 +82,39 @@ def remove_mechanic(ticket_id, mechanic_id):
     db.session.commit()
 
     return service_ticket_schema.jsonify(service_ticket), 200
+
+
+@service_ticket_bp.route("/<int:ticket_id>/edit", methods=['PUT'])
+@token_required
+def edit_ticket_mechanics(user_id, ticket_id):
+    ticket = db.session.get(ServiceTicket, ticket_id)
+    
+    if not ticket:
+        return jsonify({"error": "Service ticket not found"}), 404
+    
+    data = request.get_json()
+    
+    add_ids = data.get("add_ids", [])
+    remove_ids = data.get("remove_ids", [])
+    
+    for mechanic_id in add_ids:
+        mechanic = db.session.get(Mechanic, mechanic_id)
+        
+        if mechanic and mechanic not in ticket.mechanics:
+            ticket.mechanics.append(mechanic)
+            
+    for mechanic_id in remove_ids:
+        mechanic = db.session.get(Mechanic, mechanic_id)
+        
+        if mechanic and mechanic not in ticket.mechanics:
+            ticket.mechanics.remove(mechanic)
+            
+        db.session.commit()
+        
+        return jsonify({
+            "message": "Mechanics updated successfully",
+            "ticket": service_ticket_schema.dump(ticket)
+        }), 200
+   
+  
+  

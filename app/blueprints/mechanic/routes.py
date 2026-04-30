@@ -1,8 +1,8 @@
 from .schemas import mechanic_schema, mechanics_schema
 from flask import jsonify, request
-from app.models import Mechanic, db
+from app.models import Mechanic, db, ServiceTicket, service_mechanics
 from marshmallow import ValidationError
-from sqlalchemy import select
+from sqlalchemy import select, func, desc
 from . import mechanics_bp
 
 
@@ -83,3 +83,25 @@ def delete_mechanic(mechanic_id):
     return jsonify({
         "message": f"Mechanic id: {mechanic_id}, successfully deleted."
     }), 200
+    
+    
+
+@mechanics_bp.route("/most-tickets", methods=["GET"])
+def mechanics_by_most_tickets():
+    query = (
+        select(Mechanic, func.count(service_mechanics.c.ticket_id).label("ticket_count"))
+        .join(service_mechanics, Mechanic.id == service_mechanics.c.mechanic_id)
+        .group_by(Mechanic.id)
+        .order_by(desc("ticket_count"))
+    )
+    
+    results = db.session.execute(query).all()
+    
+    mechanics = []
+    
+    for mechanic, ticket_count in results:
+        mechanic_data = mechanic_schema.dump(mechanic)
+        mechanic_data["ticket_count"] = ticket_count
+        mechanics.append(mechanic_data)
+        
+    return jsonify(mechanics), 200
