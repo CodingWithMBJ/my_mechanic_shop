@@ -12,11 +12,12 @@ from app.utils.util import encode_token, token_required
 @customers_bp.route("/login", methods=["POST"])
 def login():
     try:
-        credentials = request.json
-        username = credentials["email"]
-        password = credentials["password"]
-    except KeyError:
-        return jsonify({"message": "Invalid payload, expecting email and password"}), 400
+        credentials = login_schema.load(request.json)
+    except ValidationError as e:
+        return jsonify(e.messages), 400
+
+    username = credentials["email"]
+    password = credentials["password"]
 
     query = select(Customer).where(Customer.email == username)
     user = db.session.execute(query).scalar_one_or_none()
@@ -35,7 +36,7 @@ def login():
 
 # CREATE CUSTOMER
 @customers_bp.route("/", methods=["POST"])
-@limiter.limit("100 per hour")
+@limiter.limit("20 per hour")
 def create_customer():
     try:
         customer_data = customer_schema.load(request.json)
@@ -102,11 +103,18 @@ def get_customer(customer_id):
 @customers_bp.route("/<int:customer_id>", methods=["PUT"])
 @token_required
 def update_customer(user_id, customer_id):
+    
+    if user_id != customer_id:
+        return jsonify({
+        "error": "Unauthorized",
+        "message": "You can only modify your own account"
+        }), 403
+
     customer = db.session.get(Customer, customer_id)
 
     if not customer:
         return jsonify({"error": "Customer not found."}), 404
-
+    
     try:
         customer_data = customer_schema.load(request.json)
     except ValidationError as e:

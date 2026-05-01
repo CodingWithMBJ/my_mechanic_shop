@@ -1,6 +1,6 @@
 from .schemas import mechanic_schema, mechanics_schema
 from flask import jsonify, request
-from app.models import Mechanic, db, ServiceTicket, service_mechanics
+from app.models import Mechanic, db, service_mechanics
 from marshmallow import ValidationError
 from sqlalchemy import select, func, desc
 from . import mechanics_bp
