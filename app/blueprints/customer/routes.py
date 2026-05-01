@@ -1,4 +1,4 @@
-from .schemas import customer_schema, customers_schema
+from .schemas import customer_schema, customers_schema, login_schema
 from flask import jsonify, request
 from app.models import Customer, db
 from marshmallow import ValidationError

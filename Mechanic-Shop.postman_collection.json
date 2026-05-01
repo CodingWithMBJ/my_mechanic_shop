@@ -20,7 +20,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Mohamed\",\n  \"email\": \"mohamed2@example.com\",\n  \"phone_number\": \"6515550002\",\n  \"password\": \"pass7wo\"\n}",
+              "raw": "{\n  \"name\": \"Mohamed Jalloh\",\n  \"email\": \"mohamed@test.com\",\n  \"phone_number\": \"125-412-4560\",\n  \"password\": \"Password123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -201,6 +201,55 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Pagination",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc2MDg4MTEsImlhdCI6MTc3NzYwNTIxMSwic3ViIjoiOSJ9.oLVItabcF-U5JSerHXHYLjgt540ubXS9Z8suQw8YmR8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"mohamed@test.com\",\n  \"password\": \"Password123\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/customers?page=1&per_page=5",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "customers"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -217,7 +266,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n        \"email\": \"hassan@example.com\",\n        \"name\": \"Hassan Ali\",\n        \"phone\": \"6515551122\",\n        \"salary\": 70000.0\n    }",
+              "raw": "{\n        \"email\": \"John@example.com\",\n        \"name\": \"John\",\n        \"phone\": \"6512221022\",\n        \"salary\": 80000.0\n    }",
               "options": {
                 "raw": {
                   "language": "json"
@@ -324,6 +373,29 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get Mechanics By Most Tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/mechanics/most-tickets",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "mechanics",
+                "most-tickets"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -340,7 +412,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"vin\": \"1HGCM82633A654321\",\n  \"service_desc\": \"Brake inspection and pad replacement\",\n  \"customer_id\": 2\n}",
+              "raw": "{\n  \"vin\": \"1HGCM82633A654123\",\n  \"service_desc\": \"Oil change and brake inspection\",\n  \"customer_id\": 4\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -372,7 +444,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc0ODI0NDYsImlhdCI6MTc3NzQ3ODg0Niwic3ViIjoiMiJ9.VAGLHPFpUP0kCw5F_nAx30UHuvlsBaa1UuFBjNQDQZY",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc2MDkyNDgsImlhdCI6MTc3NzYwNTY0OCwic3ViIjoiOSJ9.AvA7AJvV2rnT8MrHI6QpGzcH7KCQqmim-HTD-jtMDMQ",
                   "type": "string"
                 }
               ]
@@ -440,6 +512,300 @@
                 "service-tickets",
                 "1",
                 "remove-mechanic",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Tickets",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/service-tickets/my-tickets",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "service-tickets",
+                "my-tickets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Ticket Mechanics",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc2MDkyNDgsImlhdCI6MTc3NzYwNTY0OCwic3ViIjoiOSJ9.AvA7AJvV2rnT8MrHI6QpGzcH7KCQqmim-HTD-jtMDMQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add_ids\": [],\n  \"remove_ids\": [1]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/service-tickets/1/edit",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "service-tickets",
+                "1",
+                "edit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Part To Ticket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Nzc2MTAwMTMsImlhdCI6MTc3NzYwNjQxMywic3ViIjoiMiJ9.yApi2WAeX-g3-BMb_Y8yiqv9_efBlRQgMp5kxuJGnSU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/service-tickets/1/add-part/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "service-tickets",
+                "1",
+                "add-part",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Part From Ticket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/service-tickets/1/remove-part/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "service-tickets",
+                "1",
+                "remove-part",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Create Inventory Part",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Premium Brake Pads\",\n  \"price\": 99.99\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/inventory",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Inventory Parts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/inventory",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Inventory Part By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/inventory/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "inventory",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Inventory Part",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Premium Brake Pads\",\n  \"price\": 99.99\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/inventory/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "inventory",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Inventory Part",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/inventory/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "inventory",
                 "1"
               ]
             }
