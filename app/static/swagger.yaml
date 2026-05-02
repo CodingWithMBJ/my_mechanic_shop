@@ -8,7 +8,7 @@ info:
 host: "my-mechanic-shop-z4to.onrender.com"
 
 schemes:
-  - "http"
+  - "https"
 
 consumes:
   - "application/json"
