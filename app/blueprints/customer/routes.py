@@ -103,11 +103,11 @@ def get_customer(customer_id):
 @customers_bp.route("/<int:customer_id>", methods=["PUT"])
 @token_required
 def update_customer(user_id, customer_id):
-    
-    if user_id != customer_id:
+
+    if int(user_id) != customer_id:
         return jsonify({
-        "error": "Unauthorized",
-        "message": "You can only modify your own account"
+            "error": "Unauthorized",
+            "message": "You can only modify your own account"
         }), 403
 
     customer = db.session.get(Customer, customer_id)
