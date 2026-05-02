@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+import os
 
 from jose import jwt
 import jose
@@ -6,7 +7,7 @@ from functools import wraps
 from flask import request, jsonify
 
 
-SECRET_KEY = "a super secrete, secret"
+SECRET_KEY = os.environ.get('SECRET_KEY') or "a super secrete, secret"
 
 def encode_token(user_id): #using unique pieces of info to make our tokens user specific
     payload = {
